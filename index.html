@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta charset="UTF-8">
 	<title>Scoped CSS Variables with JS</title>
 </head>
 <body>
@@ -15,9 +16,68 @@
 	<input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
 
 	<label for="base">Base Color</label>
-	<input type="range" name="base" value="#ffc600">
+	<input type="color" name="base" value="#FF0000">
 </div>
 
+	<img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+
+
+<style type="text/css">
+
+	:root {
+		--base: #FF0000;
+		--spacing: 10px;
+		--blur: 10px;
+
+	}
+
+	img {
+		padding: var(--spacing);
+		background: var(--base);
+		filter: blur(var(--blur));
+	}
+
+	.h1 {
+		color: var(--base);
+	}
+
+	/* 
+	
+	misc styling. nothing to do with CSS variables
+	
+	*/
+	body {
+		
+		background: #193549;
+		text-align: center;
+		color: white;
+		font-family: 'helvetica neue', sans-serif;
+		font-weight: 100;
+		font-size: 50px;
+	}
+
+	.controls {
+		margin-bottom: 50px;
+	}
+
+	input {
+		width: 100px;
+	}
+
+</style>
+
+<script type="text/javascript">
+	const inputs = document.querySelectorAll('.controls input');
+
+	function handleUpdate(){
+		console.log(this.value);
+	}
+
+	handleUpdate();
+
+	inputs.forEach(input => input.addEventListener('change', handleUpdate));
+	inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+</script>
 
 </body>
 </html>
